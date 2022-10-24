@@ -33,12 +33,17 @@ def self_num(num):
 
         num += 1
 
-lst = []
+# lst = []
 
-for i in range(1, 10001):
-    lst += [i]
+# for i in range(1, 10001):
+#     lst += [i]
+
+lst = [i for i in range(1, 10001)]
+
+print(lst)
 
 self_num(1)
 
 for result in lst:
     print(result)
+
