@@ -14,29 +14,14 @@ def hansu(n):
 
     length = len(str_num)
 
-    if length == 1:
-        return 1
-
     lst = []
 
-    if length % 2 == 0:
-        for i in range(length):
-            if int(str_num[i]) + int(str_num[length-1-i]) in lst:
-                pass
-            else:
-                lst.append(int(str_num[i]) + int(str_num[length-1-i]))
-            if len(lst) > 1:
-                return 0
-        return 1
-
-    if length % 2 == 1:
-        for i in range(length):
-            if int(str_num[i]) + int(str_num[length-1-i]) not in lst:
-                lst.append(int(str_num[i]) + int(str_num[length-1-i]))
-            if len(lst) >= 2:
-                return 0
-        if len(lst) == 1:
-            return 1
+    for i in range(length):
+        if int(str_num[i]) + int(str_num[length-1-i]) not in lst:
+            lst.append(int(str_num[i]) + int(str_num[length-1-i]))
+        if len(lst) > 1:
+            return 0
+    return 1
 
 N = int(input())
 
