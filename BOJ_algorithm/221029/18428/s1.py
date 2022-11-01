@@ -4,15 +4,6 @@ def get_max(count, info):
     # print(block_history)                       
     
     if count == 3:
-        
-        blocks = []
-        for k in range(N):
-            for l in range(N):
-                if info[k][l] == 'B':
-                    blocks += [(k, l)]
-        if sorted(blocks) in block_history:
-            return
-
         for teacher in teachers:
             loc_y, loc_x = teacher
             # 상
@@ -85,11 +76,19 @@ def get_max(count, info):
                 if info[i][j] == 'X':
 
                     info[i][j] = 'B'
-                    
-                    get_max(count+1, info)
-                    info[i][j] = 'X'
 
-    else :
+                    blocks = []
+                    for k in range(N):
+                        for l in range(N):
+                            if info[k][l] == 'B':
+                                blocks += [(k, l)]
+                    if sorted(blocks) in block_history:
+                        info[i][j] ='X'
+                    else:
+                        get_max(count+1, info)
+                        info[i][j] = 'X'
+
+    else:
         for i in range(N):
             for j in range(N):
                 if info[i][j] == 'X':
