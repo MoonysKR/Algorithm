@@ -1,6 +1,6 @@
 import sys
 
-sys.stdin = open('input1.txt')
+sys.stdin = open('input9.txt')
 
 N = int(input())
 
@@ -55,12 +55,14 @@ for _ in range(std_num):
                 flag = 1
 
 
-rows = (N -1) // 20
+# rows = (N - 1) // 20
 
-for i in range(rows + 1):
-    if i == rows:
-        for j in range(N % 20):
-            print(switches[j + (20 * i)], end = ' ')
-    else:
-        for j in range(10):
-            print(switches[j + (20 * i)], end = ' ')
+# for i in range(rows + 1):
+#     if i == rows:
+#         print(*switches[20 * i : (20 * i) + (N % 20)])
+#         # 20을 20으로 나눈 나머지는 없음
+#     else:
+#         print(*switches[20 * i : (20 * i) + 20])
+
+for i in range(0, N, 20): 
+    print(*switches[i:i+20])
