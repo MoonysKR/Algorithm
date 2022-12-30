@@ -2,15 +2,26 @@ import sys
 
 sys.stdin = open('input1.txt')
 
+def factorial(n):
+    if n == 0:
+        return 1
+    elif n > 0:
+        return n * factorial(n - 1)
+    
+    
+
 T = int(input())
 
 for tc in range(T):
     N, M = map(int, input().split())
 
-    result = 1
+    # mCn == m! / (n! * (m - n)!) 
 
-    for i in range(N):
-        result = result * (M - i)
+    # print(factorial(M), factorial(N), factorial(M-N))
+    result = factorial(M) // (factorial(N) * factorial(M - N))
 
     print(result)
+
             
+
+        
