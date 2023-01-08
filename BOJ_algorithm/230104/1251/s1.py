@@ -1,8 +1,10 @@
 import sys
 
-sys.stdin = open('input2.txt')
+sys.stdin = open('input3.txt')
 
 w = input()
+
+# print(w)
 
 w_lst = []
 
@@ -11,110 +13,75 @@ for i in range(len(w)):
 # print(w_lst)
 # [109, 111, 98, 105, 116, 101, 108]
 
+result_lst = []
+
 # 단어를 돌려서 단어를 대체할 리스트를 만들고, 기존의 것과 바꿔주기
-if len(w) % 2 == 1:
+for i in range(1, len(w_lst) -1):
+    for j in range(i + 1, len(w_lst)):
 
-    tmp_lst = []
-    
-    for i in range(1, len(w)//2 + 1):
-        tmp_lst = []
+
         front = w[0:i]
-        center = w[i:len(w)-i]
-        back = w[len(w)-i:len(w)]
-        
+        center = w[i:j]
+        back = w[j:len(w_lst)]
+
         # print(front, center, back)
+        # m o bitel
+        # m ob itel
+        # m obi tel
+        # m obit el
         # m obite l
+        # mo b itel
+        # mo bi tel
         # mo bit el
+        # mo bite l
         # mob i tel
-
-        for j in range(-1, -len(front) -1, -1):
-            tmp_lst.append(ord(front[j]))
-        
-        # print(tmp_lst)
-        # [109]
-        # [111, 109]
-        # [98, 111, 109]
-        
-        for j in range(-1, -len(center) -1, -1):
-            tmp_lst.append(ord(center[j]))
-
-        # print(tmp_lst)
-        # [109, 111, 98, 105, 116, 101]
-        # [111, 109, 98, 105, 116]
-        # [98, 111, 109, 105]
-        
-        for j in range(-1, -len(back) -1, -1):
-            tmp_lst.append(ord(back[j]))
-
-        # print(tmp_lst)
-        # [109, 111, 98, 105, 116, 101, 108]
-        # [111, 109, 98, 105, 116, 108, 101]
-        # [98, 111, 109, 105, 108, 101, 116]
-
-        for j in range(len(w_lst)):
-            if tmp_lst[j] > w_lst[j]:
-                break
-            elif tmp_lst[j] == w_lst[j]:
-                continue
-            else:
-                w_lst = tmp_lst
-                break
-
-        # print(w_lst)
-        # [109, 111, 98, 105, 116, 101, 108]
-        # [109, 111, 98, 105, 116, 101, 108]
-        # [98, 111, 109, 105, 108, 101, 116]
-    
-elif len(w) % 2 == 0:
-    tmp_lst = []
-    
-    for i in range(1, len(w)//2):
+        # mob it el
+        # mob ite l
+        # mobi t el
+        # mobi te l
+        # mobit e l 
+       
         tmp_lst = []
-        front = w[0:i]
-        center = w[i:len(w)-i]
-        back = w[len(w)-i:len(w)]
-        
-        # print(front, center, back)
-        # m obite l
-        # mo bit el
-        # mob i tel
 
-        for j in range(-1, -len(front) -1, -1):
-            tmp_lst.append(ord(front[j]))
-        
-        # print(tmp_lst)
-        # [109]
-        # [111, 109]
-        # [98, 111, 109]
-        
-        for j in range(len(center)):
-            tmp_lst.append(ord(center[j]))
+        for k in range(-1, -len(front) -1, -1):
+            tmp_lst.append(ord(front[k]))
+        for k in range(-1, -len(center) -1, -1):
+            tmp_lst.append(ord(center[k]))
+        for k in range(-1, -len(back) -1, -1):
+            tmp_lst.append(ord(back[k]))
 
         # print(tmp_lst)
-        # [109, 111, 98, 105, 116, 101]
-        # [111, 109, 98, 105, 116]
-        # [98, 111, 109, 105]
-        
-        for j in range(-1, -len(back) -1, -1):
-            tmp_lst.append(ord(back[j]))
-
-        # print(tmp_lst)
-        # [109, 111, 98, 105, 116, 101, 108]
-        # [111, 109, 98, 105, 116, 108, 101]
+        # [109, 111, 108, 101, 116, 105, 98]
+        # [109, 98, 111, 108, 101, 116, 105]
+        # [109, 105, 98, 111, 108, 101, 116]
+        # [109, 116, 105, 98, 111, 108, 101]
+        # [109, 101, 116, 105, 98, 111, 108]
+        # [111, 109, 98, 108, 101, 116, 105]
+        # [111, 109, 105, 98, 108, 101, 116]
+        # [111, 109, 116, 105, 98, 108, 101]
+        # [111, 109, 101, 116, 105, 98, 108]
         # [98, 111, 109, 105, 108, 101, 116]
+        # [98, 111, 109, 116, 105, 108, 101]
+        # [98, 111, 109, 101, 116, 105, 108]
+        # [105, 98, 111, 109, 116, 108, 101]
+        # [105, 98, 111, 109, 101, 116, 108]
+        # [116, 105, 98, 111, 109, 101, 108]
 
-        for j in range(len(w_lst)):
-            if tmp_lst[j] > w_lst[j]:
-                break
-            elif tmp_lst[j] == w_lst[j]:
-                continue
-            else:
-                w_lst = tmp_lst
-                break
+        if result_lst == []:
+            result_lst = tmp_lst
+        else:
+            for k in range(len(result_lst)):
+                if tmp_lst[k] > result_lst[k]:
+                    break
+                elif tmp_lst[k] == result_lst[k]:
+                    continue
+                else:
+                    result_lst = tmp_lst
+                    break
 
 result = ''
 
-for i in range(len(w_lst)):
-    result += chr(w_lst[i])
+for i in range(len(result_lst)):
+    result += chr(result_lst[i])
 
 print(result)
