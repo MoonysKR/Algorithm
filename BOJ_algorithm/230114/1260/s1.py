@@ -1,6 +1,6 @@
 import sys
 
-sys.stdin = open('input5.txt')
+sys.stdin = open('input4.txt')
 
 from collections import deque
 
@@ -54,7 +54,7 @@ for i in range(M):
 
 # print(*info, sep='\n')
 
-bfs_visited = []
+bfs_visited = [V]
 dfs_visited = []
 
 dfs(V-1)
