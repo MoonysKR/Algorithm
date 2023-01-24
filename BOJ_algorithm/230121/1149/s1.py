@@ -1,6 +1,8 @@
+# 시간초과 풀이법
+
 import sys
 
-sys.stdin = open('input5.txt')
+sys.stdin = open('input1.txt')
 
 def min_rgb(nums, before, cost):
     global N, info, min_cost
