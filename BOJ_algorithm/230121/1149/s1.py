@@ -2,52 +2,37 @@ import sys
 
 sys.stdin = open('input5.txt')
 
-def min_rgb(lst, before, where):
+def min_rgb(nums, before, cost):
     global N, info, min_cost
 
-    if len(lst) == N:
-        if sum(lst) < min_cost:
-            min_cost = sum(lst)
+    if nums == N:
+        if cost < min_cost:
+            min_cost = cost
 
-    if len(lst) == 0:
+    if nums == 0:
         for i in range(3):
-            lst.append(info[where][i])
             if i == 0:
-                min_rgb(lst, 'R', where + 1)
+                min_rgb(nums + 1, 'R', cost + info[nums][i])
             elif i == 1:
-                min_rgb(lst, 'G', where + 1)
+                min_rgb(nums + 1, 'G', cost + info[nums][i])
             elif i == 2:
-                min_rgb(lst, 'B', where + 1)
-            lst.pop()
+                min_rgb(nums + 1, 'B', cost + info[nums][i])
 
-
-    if len(lst) > 0 and len(lst) < N:
-        if sum(lst) > min_cost:
+    if nums > 0 and nums < N:
+        if cost >= min_cost:
             return
 
         elif before == 'R':
-            lst.append(info[where][1])
-            min_rgb(lst, 'G', where + 1)
-            lst.pop()
-            lst.append(info[where][2])
-            min_rgb(lst, 'B', where + 1)
-            lst.pop()
+            min_rgb(nums + 1, 'G', cost + info[nums][1])
+            min_rgb(nums + 1, 'B', cost + info[nums][2])
 
         elif before == 'G':
-            lst.append(info[where][0])
-            min_rgb(lst, 'R', where + 1)
-            lst.pop()
-            lst.append(info[where][2])
-            min_rgb(lst, 'B', where + 1)
-            lst.pop()
+            min_rgb(nums + 1, 'R', cost + info[nums][0])
+            min_rgb(nums + 1, 'B', cost + info[nums][2])
 
         else:
-            lst.append(info[where][0])
-            min_rgb(lst, 'R', where + 1)
-            lst.pop()
-            lst.append(info[where][1])
-            min_rgb(lst, 'G', where + 1)
-            lst.pop()
+            min_rgb(nums + 1, 'R', cost + info[nums][0])
+            min_rgb(nums + 1, 'G', cost + info[nums][1])
 
 N = int(input())
 
@@ -63,6 +48,6 @@ min_cost = 0
 for i in range(N):
     min_cost += sum(info[i])
 
-min_rgb([], '', 0)
+min_rgb(0, '', 0)
 
 print(min_cost)
