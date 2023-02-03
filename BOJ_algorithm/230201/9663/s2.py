@@ -2,6 +2,7 @@
 
 import sys
 
+sys.setrecursionlimit(int(1e9))
 sys.stdin = open('input1.txt')
 
 from collections import deque
@@ -9,7 +10,7 @@ from collections import deque
 def get_queens(lst):
     global N, cnt
 
-    print(lst)
+    # print(lst)
 
     if len(lst) == N:
         cnt += 1
@@ -25,6 +26,7 @@ def get_queens(lst):
         for j in range(len(lst)):
             if lst[j][1] == x or abs(lst[j][0] - y) == abs(lst[j][1] - x):
                 flag = 1
+                break
         
         if flag == 0:
             lst.append((y, x))
@@ -37,13 +39,11 @@ cnt = 0
 
 lst = deque()
 
-for i in range(N):
-    lst.append((0, i))
 
 for i in range(N):
     lst.append((0, i))
     get_queens(lst)
     lst.pop()
-    print(lst)
+    # print(lst)
 
 print(cnt)
