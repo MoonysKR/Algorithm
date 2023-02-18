@@ -29,7 +29,7 @@ if N < 3 or M < 3:
     if lst_A != lst_B:
         cnt = -1
     else:
-        cnt = 0
+        pass
 else:
     for i in range(N-2):
         for j in range(M-2):
