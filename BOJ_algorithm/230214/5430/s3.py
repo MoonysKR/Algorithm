@@ -60,7 +60,11 @@ for tc in range(T):
                     result = 'error'
                     flag = 1
                 else:
-                    lst = lst[cnt:]
+                    if flip % 2 == 0:
+                        lst = lst[cnt:]
+                    else:
+                        lst = lst[:-cnt]
+
                     funcs = funcs[cnt:]
 
     # print(lst)
