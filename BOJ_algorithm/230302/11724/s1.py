@@ -2,6 +2,25 @@ import sys
 
 sys.stdin = open('input1.txt')
 
+sys.setrecursionlimit(10**6)
+
+def check(num):
+    global N, info, visited, lst
+
+    # print(num)
+    
+    if visited[num] == 1:
+        return
+    
+    visited[num] = 1
+    lst.append(num + 1)
+
+    for i in range(N):
+        if info[num][i] == 1 and visited[i] == 0:
+            check(i)
+
+
+
 N, M = map(int, input().split())
 
 info = [[0 for _ in range(N)] for _ in range(N)]
@@ -16,17 +35,12 @@ visited = [0 for _ in range(N)]
 
 group = []
 
-while 0 in visited:
 
-    for i in range(N):
-        if visited[i] == 0:
-            group.append([i])
+for i in range(N):
+    if visited[i] == 0:
+        lst = []
+        check(i)
+        # print(lst)
+        group.append(lst)
 
-
-# print(*info, sep = '\n')
-# [0, 1, 0, 0, 1, 0]
-# [1, 0, 0, 0, 1, 0]
-# [0, 0, 0, 1, 0, 0]
-# [0, 0, 1, 0, 0, 1]
-# [1, 1, 0, 0, 0, 0]
-# [0, 0, 0, 1, 0, 0]
+print(len(group))
