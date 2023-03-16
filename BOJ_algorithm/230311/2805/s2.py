@@ -1,13 +1,13 @@
 import sys
 
-sys.stdin = open('input1.txt')
+sys.stdin = open('input2.txt')
 
 sys.setrecursionlimit(10**9)
 
 def check(start, end):
     global trees, max_height
 
-    # print(start, end)
+    print(start, end)
 
     middle = (start + end) // 2
 
@@ -30,11 +30,11 @@ trees = list(map(int, input().split()))
 
 highest = max(trees)
 
-height = 1
+lowest = min(trees)
 
 max_height = 0
 
-check(1, highest)
+check(lowest, highest)
 
 print(max_height)
 
